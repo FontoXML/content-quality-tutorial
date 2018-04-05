@@ -1,0 +1,14 @@
+<?fontoxml-author author-id="anonymous" name="Anonymous"?>
+<concept xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="concept_bbabc91f-f7dd-4c3d-afca-209fef688985" xsi:noNamespaceSchemaLocation="urn:fontoxml:names:tc:dita:xsd:concept.xsd:1.3" xml:lang="en">
+    <title id="title_58ee97c6-1c84-46d9-80b1-1cb3aa03cefa">FontoXML Content Quality</title>
+    <conbody id="conbody_3f940376-0f85-4f71-dca0-6b9dd0c7ebf3">
+        <section id="id-982347e9-93fa-4458-84b0-c3abb741e053" xml:lang="en">
+            <title id="id-30318727-0682-47e9-c99b-4b229247e925">English</title>
+            <p id="id-0e5e14cd-b81e-4c12-d914-da0dd78df0d6">Sculpture number 1 is 3 meter high.</p>
+        </section>
+        <section id="section_173d33ee-ba87-400f-c0cc-52789dfcccb5" xml:lang="nl">
+            <title id="title_cc09954a-6bf6-424b-dc22-8affb234a655">Nederlands</title>
+            <p id="id-2f8b9e78-984b-4894-e8e3-3495626bff35">Beeldwerk nummer 2 is 5 feet hoog.</p>
+        </section>
+    </conbody>
+</concept>

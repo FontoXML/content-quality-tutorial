@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<analysis
+    xmlns="http://schemas.fontoxml.com/fcq/1.0/analysis-configuration.xsd"
+    xmlns:tutorial="urn:fontoxml:fcq:annotations:tutorial:1.0.0">
+ 
+    <!-- The example use-case has multiple annotators and filters which depend on each other, start a sequential flow to execute them in order. -->
+    <sequential>
+        <!-- The RegexAnnotator finds all occurrences of a number followed by the supported units of measure. -->
+        <regexAnnotator annotationTypeId="tutorial:unit-of-measure" ignoreCase="true"  pattern="\b([-+]?[0-9]*[\.\,]?[0-9]+(e[-+]?[0-9]+)?)\s+(feet|meter|meters)\b" />
+ 
+        <!-- A custom HttpApiAnnotator which uses the unit-of-measure annotations from the regex annotator. -->
+        <httpApiAnnotator endpoint="http://localhost:6005/api/annotate" />
+ 
+        <!-- Remove the temporary unit-of-measure annotations because only the unit-of-measure-convert annotations are relevant for the editor. -->
+        <removeAnnotations annotationTypeIds="tutorial:unit-of-measure" />
+    </sequential>
+ 
+</analysis>

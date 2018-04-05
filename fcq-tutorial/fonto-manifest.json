@@ -1,0 +1,5 @@
+{
+    "dependencies": {
+        "fontoxml-content-quality": "packages/fontoxml-content-quality"
+    }
+}
