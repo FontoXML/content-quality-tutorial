@@ -1,11 +1,11 @@
 define([
-    './api/registerAnnotationTypes.jsx'
+	'./api/registerAnnotationTypes.jsx'
 ], function (
-    registerAnnotationTypes
-    ) {
-    'use strict';
- 
-    return function install () {
-        registerAnnotationTypes.default();
-    };
+	registerAnnotationTypes
+	) {
+	'use strict';
+
+	return function install () {
+		registerAnnotationTypes.default();
+	};
 });

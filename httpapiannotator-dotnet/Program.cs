@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -115,8 +114,6 @@ namespace FontoXml.ContentQuality.HttpApiAnnotator.Sample
 			var unitsOfMeasure = request.Annotations
 				.Where(a => a.Type.Name.Equals("unit-of-measure") && a.Type.Namespace.Equals("urn:fontoxml:fcq:annotations:tutorial:1.0.0"));
 
-			var regexMatcher = new Regex(@"^([-+]?[0-9]*[\.\,]?[0-9]+(e[-+]?[0-9]+)?)\s+(feet|meter|meters)$", RegexOptions.IgnoreCase);
-
 			var response = new ResponseDto();
 			foreach (var unitOfMeasure in unitsOfMeasure)
 			{
@@ -127,13 +124,18 @@ namespace FontoXml.ContentQuality.HttpApiAnnotator.Sample
 				if (language == null)
 					continue;
 
-				var regexMatches = regexMatcher.Match(unitOfMeasure.Metadata["match"].Value<string>());
-				if (!regexMatches.Success)
+				if (unitOfMeasure.Metadata["captures"]?["value"] == null
+				    || unitOfMeasure.Metadata["captures"]["value"].Count() != 1
+				    || unitOfMeasure.Metadata["captures"]["value"][0]["value"] == null
+
+				    || unitOfMeasure.Metadata["captures"]?["unit"] == null
+				    || unitOfMeasure.Metadata["captures"]["unit"].Count() != 1
+				    || unitOfMeasure.Metadata["captures"]["unit"][0]["value"] == null)
 					continue;
 
 				var languageTag = language.Metadata["tag"].Value<string>();
-				var unit = regexMatches.Groups[3].Value.ToLower();
-				var value = double.Parse(regexMatches.Groups[1].Value.Replace(',', '.'), new CultureInfo("en-US"));
+				var unit = unitOfMeasure.Metadata["captures"]["unit"][0]["value"].Value<string>();
+				var value = double.Parse(unitOfMeasure.Metadata["captures"]["value"][0]["value"].Value<string>().Replace(',', '.'), new CultureInfo("en-US"));
 
 				string replacement;
 				const double metersToFeetFactor = 0.304800610;
