@@ -9,7 +9,7 @@
         <regexAnnotator annotationTypeId="tutorial:unit-of-measure" ignoreCase="true"  pattern="\b(?&lt;value&gt;[-+]?[0-9]*[\.\,]?[0-9]+(e[-+]?[0-9]+)?)\s+(?&lt;unit&gt;feet|meter|meters)\b" />
 
         <!-- A custom HttpApiAnnotator which uses the unit-of-measure annotations from the regex annotator. -->
-        <httpApiAnnotator endpoint="http://localhost:6005/api/annotate" />
+        <httpApiAnnotator endpoint="http://localhost:6005/api/annotate" inputAnnotationTypeIds="tutorial:unit-of-measure" />
 
         <!-- Remove the temporary unit-of-measure annotations because only the unit-of-measure-convert annotations are relevant for the editor. -->
         <removeAnnotations annotationTypeIds="tutorial:unit-of-measure" />
